@@ -58,15 +58,9 @@ def main():
 
     print(os.environ)
 
-    if os.environ.get('LOCAL_DEPLOYMENT') == "true":
-        print('Deploying locally.')
-        model = downloadLatestModel(ws)
-        print(f'Downloaded the model {model.id} locally. You can now proceed to build the Docker image.')
-    else:
-        print('Deploying on Azure.')
-        environment = prepareEnv(ws)
-        service = prepareDeployment(ws, environment)
-        service.wait_for_deployment(show_output=True)
+    environment = prepareEnv(ws)
+    service = prepareDeployment(ws, environment)
+    service.wait_for_deployment(show_output=True)
 
 
 if __name__ == '__main__':
