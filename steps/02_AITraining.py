@@ -134,16 +134,11 @@ def main():
     ws = connectWithAzure()
 
     TRAIN_ON_LOCAL = os.environ.get('TRAIN_ON_LOCAL') == 'true'
-
-    print(os.environ.get('TRAIN_ON_LOCAL'))
-    print(os.environ.get('TRAIN_ON_LOCAL') == 'true')
-
     
     compute_target = prepareComputeCluster(ws)
 
-    # # We can also run on the local machine if we set the compute_target to None. We specify this in an ENV variable as TRAIN_ON_LOCAL.
-    # # If you don't give this parameter, we are defaulting to False, which means we will not train on local
-    # compute_target = None if os.environ.get('TRAIN_ON_LOCAL') == 'true' else prepareComputeCluster(ws)
+    # We can also run on the local machine if we set the compute_target to None. We specify this in an ENV variable as TRAIN_ON_LOCAL.
+    # If you don't give this parameter, we are defaulting to False, which means we will not train on local
     environment = prepareEnvironment(ws)
     exp, config = prepareTraining(ws, environment, compute_target)
 
