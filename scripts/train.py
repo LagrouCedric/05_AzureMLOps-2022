@@ -109,7 +109,7 @@ model = buildModel((64, 64, 3), 3) # Create the AI model as defined in the utils
 
 model.compile(loss="categorical_crossentropy", optimizer=opt, metrics=["accuracy"])
 
-# Thanks to Patrik De Boe: Add callback LogToAzure class to log to AzureML
+# Add callback LogToAzure class to log to AzureML
 class LogToAzure(keras.callbacks.Callback):
     '''Keras Callback for realtime logging to Azure'''
     def __init__(self, run):
@@ -157,7 +157,6 @@ print(cf_matrix)
 
 print(LABELS)
 
-# Thanks to Patrik De Boe
 ## Log Confusion matrix , see https://docs.microsoft.com/en-us/python/api/azureml-core/azureml.core.run.run?view=azure-ml-py#log-confusion-matrix-name--value--description----
 cmtx = {
     "schema_type": "confusion_matrix",
