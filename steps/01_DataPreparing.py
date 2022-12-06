@@ -77,7 +77,7 @@ def prepareDataset(ws):
     data_folder = os.path.join(os.getcwd(), 'data')
     os.makedirs(data_folder, exist_ok=True)
 
-    for option in OPTIONS:
+    for options_name in OPTIONS:
         os.makedirs(os.path.join(data_folder, 'options', options_name), exist_ok=True)
 
     # Define a path to store the animal images onto. We'll choose for `data/processed/animals` this time. Again, create subdirectories for all the animals
