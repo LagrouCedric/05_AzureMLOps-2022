@@ -84,7 +84,7 @@ on:
     
 
 env:
-  CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}f
+  CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
 
   CLIENT_ID: 22332e80-feca-4103-9d75-fc7959f3fd58 # Change this !
   TENANT_ID: 4ded4bb1-6bff-42b3-aed7-6a36a503bf7a # Change this !
