@@ -160,14 +160,14 @@ jobs:
       AML_COMPUTE_CLUSTER_NAME: cedric-cpu-cluster
       AML_COMPUTE_CLUSTER_MIN_NODES: 1
       AML_COMPUTE_CLISTER_MAX_NODES: 4
-      AML_COMPUTE_CLUSTER_SKU: STANDARD_D2_V2
+      AML_COMPUTE_CLUSTER_SKU: Standard_D12
 
       # TRAIN_ON_LOCAL: ${{ inputs.train_on_local }} # If you want to train on your local runner, set this to True.
       TRAIN_ON_LOCAL: false # If you want to train on your local runner, set this to True.
 
       ## Training environment
       CONDA_DEPENDENCIES_PATH: conda_dependencies.yml
-      TRAINING_ENV_NAME: animals-classification-env-training
+      TRAINING_ENV_NAME: options-classification-env-training
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
