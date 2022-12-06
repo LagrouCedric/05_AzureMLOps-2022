@@ -41,6 +41,7 @@ COMPUTE_MAX_NODES = int(os.environ.get("AML_COMPUTE_CLUSTER_MAX_NODES", 4))
 VM_SIZE = os.environ.get("AML_COMPUTE_CLUSTER_SKU", "Standard_D12")
 
 def prepareComputeCluster(ws):
+    print("Preparing compute cluster")
     if COMPUTE_NAME in ws.compute_targets:
         compute_target = ws.compute_targets[COMPUTE_NAME]
         if compute_target and type(compute_target) is AmlCompute:
@@ -133,7 +134,7 @@ def downloadAndRegisterModel(ws, run):
 def main():
     ws = connectWithAzure()
 
-    TRAIN_ON_LOCAL = os.environ.get('TRAIN_ON_LOCAL') == 'true'
+    # TRAIN_ON_LOCAL = os.environ.get('TRAIN_ON_LOCAL') == 'true'
     
     compute_target = prepareComputeCluster(ws)
     print("Compute target ready")
