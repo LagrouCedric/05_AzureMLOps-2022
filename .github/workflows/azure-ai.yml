@@ -157,7 +157,7 @@ jobs:
       EXPERIMENT_NAME: vehicle-classification
 
       ## Compute cluster parts
-      AML_COMPUTE_CLUSTER_NAME: test-cpu-cluster
+      AML_COMPUTE_CLUSTER_NAME: test2-cpu-cluster
       AML_COMPUTE_CLUSTER_MIN_NODES: 1
       AML_COMPUTE_CLISTER_MAX_NODES: 4
       AML_COMPUTE_CLUSTER_SKU: Standard_D12

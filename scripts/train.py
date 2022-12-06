@@ -11,7 +11,7 @@ import random
 # from sklearn.metrics import classification_report, confusion_matrix
 
 # This AzureML package will allow to log our metrics etc.
-from azureml.core import Run
+# from azureml.core import Run
 
 # Important to load in the utils as well!
 from utils import *
