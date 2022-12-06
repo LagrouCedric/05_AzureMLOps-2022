@@ -86,16 +86,16 @@ on:
 env:
   CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
 
-  CLIENT_ID: cf21afce-62c6-4ffc-8c44-305bbcd608cc # Change this !
-  TENANT_ID: b1b5b747-fa79-442d-b8ab-870c8343c3c4 # Change this !
-  WORKSPACE_NAME: MLOps-nathan-segers # Change this !
-  RESOURCE_GROUP: TETRA-Workshop-2406 # Change this !
-  SUBSCRIPTION_ID: 763622cd-d9e1-46f1-84c7-635df9708641 # Change this !
+  CLIENT_ID: 22332e80-feca-4103-9d75-fc7959f3fd58 # Change this !
+  TENANT_ID: 4ded4bb1-6bff-42b3-aed7-6a36a503bf7a # Change this !
+  WORKSPACE_NAME: lagrou-cedric-ml # Change this !
+  RESOURCE_GROUP: mlops-demo # Change this !
+  SUBSCRIPTION_ID: 4dc57ad1-5e37-4d2b-b064-84f166c27fac # Change this !
 
-  ANIMALS: cats,dogs,pandas # As we have three classes, let's just defined them here. This way we can easily loop over them later.
-  TRAIN_SET_NAME: animals-training-set
-  TEST_SET_NAME: animals-testing-set
-  MODEL_NAME: animal-cnn
+  OPTIONS: vehicles,non-vehicles # As we have three classes, let's just defined them here. This way we can easily loop over them later.
+  TRAIN_SET_NAME: options-training-set
+  TEST_SET_NAME: options-testing-set
+  MODEL_NAME: carDetection-cnn
 
   SCRIPT_FOLDER: scripts
 
