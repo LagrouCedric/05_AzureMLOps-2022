@@ -84,7 +84,7 @@ on:
     
 
 env:
-  CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+  CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}f
 
   CLIENT_ID: 22332e80-feca-4103-9d75-fc7959f3fd58 # Change this !
   TENANT_ID: 4ded4bb1-6bff-42b3-aed7-6a36a503bf7a # Change this !
@@ -157,13 +157,13 @@ jobs:
       EXPERIMENT_NAME: vehicle-classification
 
       ## Compute cluster parts
-      AML_COMPUTE_CLUSTER_NAME: cedric-cpu-cluster
+      AML_COMPUTE_CLUSTER_NAME: test-cpu-cluster
       AML_COMPUTE_CLUSTER_MIN_NODES: 1
       AML_COMPUTE_CLISTER_MAX_NODES: 4
       AML_COMPUTE_CLUSTER_SKU: Standard_D12
 
-      # TRAIN_ON_LOCAL: ${{ inputs.train_on_local }} # If you want to train on your local runner, set this to True.
-      TRAIN_ON_LOCAL: false # If you want to train on your local runner, set this to True.
+      TRAIN_ON_LOCAL: ${{ inputs.train_on_local }} # If you want to train on your local runner, set this to True.
+      # TRAIN_ON_LOCAL: false # If you want to train on your local runner, set this to True.
 
       ## Training environment
       CONDA_DEPENDENCIES_PATH: conda_dependencies.yml

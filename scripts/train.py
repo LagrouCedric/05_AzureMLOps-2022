@@ -15,7 +15,7 @@ from azureml.core import Run
 
 # Important to load in the utils as well!
 from utils import *
-
+print("Train.py starting ")
 parser = argparse.ArgumentParser()
 parser.add_argument('--training-folder', type=str, dest='training_folder', help='training folder mounting point.')
 parser.add_argument('--testing-folder', type=str, dest='testing_folder', help='testing folder mounting point.')
