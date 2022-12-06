@@ -162,7 +162,8 @@ jobs:
       AML_COMPUTE_CLISTER_MAX_NODES: 4
       AML_COMPUTE_CLUSTER_SKU: STANDARD_D2_V2
 
-      TRAIN_ON_LOCAL: ${{ inputs.train_on_local }} # If you want to train on your local runner, set this to True.
+      # TRAIN_ON_LOCAL: ${{ inputs.train_on_local }} # If you want to train on your local runner, set this to True.
+      TRAIN_ON_LOCAL: false # If you want to train on your local runner, set this to True.
 
       ## Training environment
       CONDA_DEPENDENCIES_PATH: conda_dependencies.yml
@@ -200,8 +201,8 @@ jobs:
 
     env:
       DEPLOYMENT_DEPENDENCIES: deployment_environment.yml
-      DEPLOYMENT_ENV_NAME: animals-classification-env-deployment
-      SCORE_SERVICE_NAME: animals-classification-svc
+      DEPLOYMENT_ENV_NAME: options-classification-env-deployment
+      SCORE_SERVICE_NAME: options-classification-svc
       LOCAL_MODEL_PATH: api/outputs
       LOCAL_DEPLOYMENT: ${{ inputs.local_deployment }}
 
@@ -251,7 +252,7 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            ghcr.io/nathansegers/tetra-workshop
+            ghcr.io/lagroucedric/123
           # generate Docker tags based on the following events/attributes:
           # The GitHub Branch
           # The GitHub SHA
