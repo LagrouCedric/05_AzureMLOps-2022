@@ -2,7 +2,7 @@ import argparse
 import os
 from glob import glob
 import random
-import numpy as np
+# import numpy as np
 
 # This time we will need our Tensorflow Keras libraries, as we will be working with the AI training now
 from tensorflow import keras
@@ -125,21 +125,23 @@ class LogToAzure(keras.callbacks.Callback):
 # Image augmentation allows us to construct “additional” training data from our existing training data 
 # by randomly rotating, shifting, shearing, zooming, and flipping. This is to avoid overfitting.
 # It also allows us to fit AI models using a Generator, so we don't need to capture the whole dataset in memory at once.
-aug = ImageDataGenerator(rotation_range=30, width_shift_range=0.1,
-                         height_shift_range=0.1, shear_range=0.2, zoom_range=0.2,
-                         horizontal_flip=True, fill_mode="nearest")
+# aug = ImageDataGenerator(rotation_range=30, width_shift_range=0.1,
+#                          height_shift_range=0.1, shear_range=0.2, zoom_range=0.2,
+#                          horizontal_flip=True, fill_mode="nearest")
 
 # train the network
-history = model.fit_generator( aug.flow(X_train, y_train, batch_size=BATCH_SIZE),
+class LogRunMetrics(Callback):
+    # callback at the end of every epoch
+    def on_epoch_end(self, epoch, log):
+        # log a value repeated which creates a list
+        run.log("Loss", log["loss"])
+        run.log("Accuracy", log["accuracy"])
+
+history = model.fit(X_train, y_train,
                         validation_data=(X_test, y_test),
-                        steps_per_epoch=len(X_train) // BATCH_SIZE,
                         epochs=MAX_EPOCHS,
-                        callbacks=[
-                            LogToAzure(run), # Thanks to Patrik De Boe!
-                            cb_save_best_model,
-                            cb_early_stop,
-                            cb_reduce_lr_on_plateau
-                        ] )
+                        callbacks=[cb_save_best_model, cb_early_stop, cb_reduce_lr_on_plateau, LogRunMetrics(), LogToAzure(run)] )
+
 
 print("[INFO] evaluating network...")
 predictions = model.predict(X_test, batch_size=32)
