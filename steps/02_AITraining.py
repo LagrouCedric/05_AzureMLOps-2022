@@ -24,7 +24,7 @@ from dotenv import load_dotenv
 # This line read those in.
 load_dotenv()
 
-ANIMALS = os.environ.get('ANIMALS').split(',')
+OPTIONS = os.environ.get('OPTIONS').split(',')
 SEED = int(os.environ.get('RANDOM_SEED'))
 
 INITIAL_LEARNING_RATE = float(os.environ.get('INITIAL_LEARNING_RATE')) # Float value
@@ -38,7 +38,7 @@ COMPUTE_MIN_NODES = int(os.environ.get("AML_COMPUTE_CLUSTER_MIN_NODES", 0))
 COMPUTE_MAX_NODES = int(os.environ.get("AML_COMPUTE_CLUSTER_MAX_NODES", 4))
 
 # This example uses CPU VM. For using GPU VM, set SKU to STANDARD_NC6
-VM_SIZE = os.environ.get("AML_COMPUTE_CLUSTER_SKU", "STANDARD_D2_V2")
+VM_SIZE = os.environ.get("AML_COMPUTE_CLUSTER_SKU", "Standard_D12")
 
 def prepareComputeCluster(ws):
     if COMPUTE_NAME in ws.compute_targets:
@@ -126,8 +126,8 @@ def downloadAndRegisterModel(ws, run):
     run.download_files(prefix=model_path)
     run.register_model(MODEL_NAME,
                 model_path=model_path,
-                tags={'animals': ','.join(ANIMALS), 'AI-Model': 'CNN', 'GIT_SHA': os.environ.get('GIT_SHA')},
-                description="Image classification on animals",
+                tags={'options': ','.join(OPTIONS), 'AI-Model': 'CNN', 'GIT_SHA': os.environ.get('GIT_SHA')},
+                description="Image classification on vehicles",
                 sample_input_dataset=datasets[test_set_name])
 
 def main():
