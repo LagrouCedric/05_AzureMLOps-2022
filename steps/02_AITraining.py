@@ -141,6 +141,7 @@ def main():
     # If you don't give this parameter, we are defaulting to False, which means we will not train on local
     environment = prepareEnvironment(ws)
     exp, config = prepareTraining(ws, environment, compute_target)
+    print("Starting training")
 
     run = exp.submit(config=config)
     run.wait_for_completion(show_output=False) # We aren't going to show the training output, you can follow that on the Azure logs if you want to.
