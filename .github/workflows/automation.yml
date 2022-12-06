@@ -13,6 +13,6 @@ jobs:
       api_creation: false
       process_images: false
       split_images: false
-      train_on_local: false
+      train_on_local: True
       local_deployment: false
     secrets: inherit
