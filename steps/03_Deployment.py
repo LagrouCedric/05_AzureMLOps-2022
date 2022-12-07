@@ -70,10 +70,11 @@ def main():
     downloadLatestModel(ws)
 
     if(LOCAL_DEPLOYMENT == 'true'):
-        print('Deploying model to Azure:')
-        environment = prepareEnv(ws)
-        service = prepareDeployment(ws, environment)
-        service.wait_for_deployment(show_output=True)
+        # print('Deploying model to Azure:')
+        # environment = prepareEnv(ws)
+        # service = prepareDeployment(ws, environment)
+        # service.wait_for_deployment(show_output=True)
+        pass
 
 
 if __name__ == '__main__':
