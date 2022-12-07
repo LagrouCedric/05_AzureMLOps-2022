@@ -82,6 +82,7 @@ print(y_test.shape)
 # Create an output directory where our AI model will be saved to.
 # Everything inside the `outputs` directory will be logged and kept aside for later usage.
 model_path = os.path.join('outputs', MODEL_NAME)
+print("Model path:", model_path)
 os.makedirs(model_path, exist_ok=True)
 
 ## START OUR RUN context.

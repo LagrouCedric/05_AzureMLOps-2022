@@ -57,7 +57,7 @@ def prepareComputeCluster(ws):
         
         # can poll for a minimum number of nodes and for a specific timeout. 
         # if no min node count is provided it will use the scale settings for the cluster
-        compute_target.wait_for_completion(show_output=True, min_node_count=None, timeout_in_minutes=20)
+        compute_target.wait_for_completion(show_output=True, min_node_count=None, timeout_in_minutes=5)
         
         # For a more detailed view of current AmlCompute status, use get_status()
         print(compute_target.get_status().serialize())
@@ -123,6 +123,7 @@ def downloadAndRegisterModel(ws, run):
 
     datasets = Dataset.get_all(workspace=ws) # Get all the datasets
     test_set_name = os.environ.get('TEST_SET_NAME')
+    print("Model path:", model_path)
 
     run.download_files(prefix=model_path)
     run.register_model(MODEL_NAME,
