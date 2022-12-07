@@ -1,4 +1,4 @@
-# import numpy as np
+# import numpy as numpy
 # import cv2
 # from tensorflow.keras.models import Sequential
 # from tensorflow.keras.layers import Dense, BatchNormalization, Conv2D, MaxPooling2D, Flatten, Activation, Dropout
@@ -25,12 +25,12 @@ def encodeLabels(y_train: List, y_test: List):
 
     return LABELS, y_train_1h, y_test_1h
 
-def getFeatures(filepaths: List[str]) -> np.array:
+def getFeatures(filepaths: List[str]) -> numpy.array:
     images = []
     for imagePath in filepaths:
         image = cv2.imread(imagePath)
         images.append(image)
-    return np.array(images)
+    return numpy.array(images)
 
 
 def buildModel(inputShape: tuple, classes: int) -> Sequential:
