@@ -4,7 +4,7 @@ import json
 
 from azureml.core.authentication import ServicePrincipalAuthentication
 from azureml.core import Workspace
-
+from keras.callbacks import Callback
 def connectWithAzure() -> Workspace:
     """
         Method that will connect to Azure and return a Workspace
