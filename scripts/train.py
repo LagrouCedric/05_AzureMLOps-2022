@@ -5,10 +5,10 @@ import random
 # import numpy as np
 
 # This time we will need our Tensorflow Keras libraries, as we will be working with the AI training now
-# from tensorflow import keras
-# from tensorflow.keras.optimizers import SGD
-# from tensorflow.keras.preprocessing.image import ImageDataGenerator
-# from sklearn.metrics import classification_report, confusion_matrix
+from tensorflow import keras
+from tensorflow.keras.optimizers import SGD
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from sklearn.metrics import classification_report, confusion_matrix
 
 # This AzureML package will allow to log our metrics etc.
 from azureml.core import Run
