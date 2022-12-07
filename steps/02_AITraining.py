@@ -121,7 +121,6 @@ def prepareTraining(ws, env, compute_target) -> Tuple[Experiment, ScriptRunConfi
 
 def downloadAndRegisterModel(ws, run):
     model_path = 'outputs/' + MODEL_NAME
-
     datasets = Dataset.get_all(workspace=ws) # Get all the datasets
     test_set_name = os.environ.get('TEST_SET_NAME')
     print("Model path:", model_path)
