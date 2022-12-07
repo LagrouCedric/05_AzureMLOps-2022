@@ -45,6 +45,7 @@ def prepareDeployment(ws, environment):
                         inference_config=inference_config,
                         deployment_config=aci_config,
                         overwrite=True)
+    print(service.get_logs())
     return service
 
 def downloadLatestModel(ws):
