@@ -9,7 +9,7 @@ from sklearn.preprocessing import LabelEncoder
 from typing import List
 
 def getTargets(filepaths: List[str]) -> List[str]:
-    labels = [fp.split('/')[-1].split('_')[0] for fp in filepaths] # Get only the animal name
+    labels = [fp.split('/')[-2] for fp in filepaths] # Get only the animal name
     return labels
 
 def encodeLabels(y_train: List, y_test: List):
@@ -77,7 +77,7 @@ def buildModel(input_shape: tuple, classes: int) -> Sequential:
     model.add(Dropout(0.5))
 
     # softmax classifier
-    model.add(Dense(classes, name='output'))
+    model.add(Dense(2, name='output'))
     model.add(Activation("softmax"))
 
     # return the constructed network architecture
