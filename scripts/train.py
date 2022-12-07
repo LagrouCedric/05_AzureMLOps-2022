@@ -146,7 +146,7 @@ history = model.fit(X_train, y_train,
 
 print("[INFO] evaluating network...")
 predictions = model.predict(X_test, batch_size=32)
-print(classification_report(y_test.argmax(axis=1), predictions.argmax(axis=1), target_names=['cats', 'dogs', 'panda'])) # Give the target names to easier refer to them.
+print(classification_report(y_test.argmax(axis=1), predictions.argmax(axis=1), target_names=['vehicles', 'non-vehicles'])) # Give the target names to easier refer to them.
 # If you want, you can enter the target names as a parameter as well, in case you ever adapt your AI model to more animals.
 
 cf_matrix = confusion_matrix(y_test.argmax(axis=1), predictions.argmax(axis=1))
@@ -165,7 +165,7 @@ cmtx = {
     "schema_type": "confusion_matrix",
     # "parameters": params,
     "data": {
-        "class_labels": ['cats', 'dogs', 'panda'],   # ["0", "1"]
+        "class_labels": ['vehicles', 'non-vehicles'],   # ["0", "1"]
         "matrix": [[int(y) for y in x] for x in cf_matrix]
     }
 }
