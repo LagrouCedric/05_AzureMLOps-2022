@@ -39,7 +39,7 @@ def buildModel(input_shape: tuple, classes: int) -> Sequential:
     chanDim = -1
 
     # CONV => RELU => POOL layer set              # first CONV layer has 32 filters of size 3x3
-    model.add(Conv2D(32, (3, 3), padding="same", name='conv_32_1', inumpyut_shape=input_shape))
+    model.add(Conv2D(32, (3, 3), padding="same", name='conv_32_1', input_shape=input_shape))
     model.add(Activation("relu"))                 # ReLU (Rectified Linear Unit) activation function
     model.add(BatchNormalization(axis=chanDim))   # normalize activations of inumpyut volume before passing to next layer
     model.add(MaxPooling2D(pool_size=(2, 2)))     # progressively reduce spatial size (width and height) of inumpyut 
