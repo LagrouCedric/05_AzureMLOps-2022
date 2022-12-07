@@ -33,6 +33,7 @@ BATCH_SIZE = int(os.environ.get('BATCH_SIZE'))
 PATIENCE = int(os.environ.get('PATIENCE'))
 MODEL_NAME = os.environ.get('MODEL_NAME')
 
+
 COMPUTE_NAME = os.environ.get("AML_COMPUTE_CLUSTER_NAME", "cpu-cluster")
 COMPUTE_MIN_NODES = int(os.environ.get("AML_COMPUTE_CLUSTER_MIN_NODES", 0))
 COMPUTE_MAX_NODES = int(os.environ.get("AML_COMPUTE_CLUSTER_MAX_NODES", 4))
