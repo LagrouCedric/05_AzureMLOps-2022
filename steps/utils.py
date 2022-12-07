@@ -1,5 +1,5 @@
 import os
-import numpy as np
+# import numpy as np
 import json
 
 from azureml.core.authentication import ServicePrincipalAuthentication
