@@ -1,5 +1,5 @@
-import numpy 
-import cv2
+# import numpy 
+# import cv2
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, BatchNormalization, Conv2D, MaxPooling2D, Flatten, Activation, Dropout
 from tensorflow.keras.utils import to_categorical
