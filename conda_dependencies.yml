@@ -7,7 +7,7 @@ dependencies:
   - pip:
       - 'azureml-dataset-runtime[pandas,fuse]'
       - azureml-defaults
-      - numpy
       - scikit-learn
       - tensorflow
-      - opencv-python-headless
+      - opencv-python-headlessµ
+      - numpy
