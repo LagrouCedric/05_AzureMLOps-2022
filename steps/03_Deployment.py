@@ -38,7 +38,7 @@ def prepareDeployment(ws, environment):
 
     # Get our model based on the name we registered in the previous notebook
     model = Model(ws, MODEL_NAME)
-
+    print("starting service deployment")
     service = Model.deploy(workspace=ws,
                         name=service_name,
                         models=[model],
@@ -51,17 +51,29 @@ def prepareDeployment(ws, environment):
 def downloadLatestModel(ws):
     local_model_path = os.environ.get('LOCAL_MODEL_PATH')
     model = Model(ws, name=MODEL_NAME)
-    model.download(local_model_path, exist_ok=True)
+    model.download(local_model_path, exist_ok=True) 
     return model
 
 def main():
+
+    # print(os.environ)
+
+    # environment = prepareEnv(ws)
+    # # service = prepareDeployment(ws, environment)
+    # # service.wait_for_deployment(show_output=True)
+    # model = downloadLatestModel(environment)
+
     ws = connectWithAzure()
 
     print(os.environ)
 
-    environment = prepareEnv(ws)
-    service = prepareDeployment(ws, environment)
-    service.wait_for_deployment(show_output=True)
+    downloadLatestModel(ws)
+
+    if(LOCAL_DEPLOYMENT == 'true'):
+        print('Deploying model to Azure:')
+        environment = prepareEnv(ws)
+        service = prepareDeployment(ws, environment)
+        service.wait_for_deployment(show_output=True)
 
 
 if __name__ == '__main__':
