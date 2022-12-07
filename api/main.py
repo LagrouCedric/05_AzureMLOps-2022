@@ -14,9 +14,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-ANIMALS = ['Cat', 'Dog', 'Panda'] # Animal names here
+OPTIONS = ['vehicles', 'non-vehicles']# Animal names here
 
-model = load_model('outputs/animal-cnn-test') # Model_name here!
+model = load_model('outputs/carDetection-cnn') # Model_name here!
 
 @app.post('/upload/image')
 async def uploadImage(img: UploadFile = File(...)):
@@ -26,4 +26,4 @@ async def uploadImage(img: UploadFile = File(...)):
     predictions = model.predict(images_to_predict)
     classifications = predictions.argmax(axis=1)
 
-    return ANIMALS[classifications.tolist()[0]]
+    return OPTIONS[classifications.tolist()[0]]
