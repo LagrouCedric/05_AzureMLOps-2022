@@ -43,8 +43,8 @@ MODEL_NAME = args.model_name # String
 
 
 # As we're mounting the training_folder and testing_folder onto the `/mnt/data` directories, we can load in the images by using glob.
-training_paths = glob(os.path.join('./data/train', '**', 'processed_animals', '**', '*.png'), recursive=True)
-testing_paths = glob(os.path.join('./data/test', '**', 'processed_animals', '**', '*.png'), recursive=True)
+training_paths = glob(os.path.join('./data/train', '**', 'processed_options', '**', '*.png'), recursive=True)
+testing_paths = glob(os.path.join('./data/test', '**', 'processed_options', '**', '*.png'), recursive=True)
 
 print("Training samples:", len(training_paths))
 print("Testing samples:", len(testing_paths))
