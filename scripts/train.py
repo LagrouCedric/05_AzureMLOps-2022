@@ -173,6 +173,6 @@ cmtx = {
 run.log_confusion_matrix('Confusion matrix - error rate', cmtx)
 
 # Save the confusion matrix to the outputs.
-np.save('outputs/confusion_matrix.npy', cf_matrix)
+numpy.save('outputs/confusion_matrix.npy', cf_matrix)
 
 print("DONE TRAINING. AI model has been saved to the outputs.")
