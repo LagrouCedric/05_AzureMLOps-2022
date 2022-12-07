@@ -1,4 +1,4 @@
-# import numpy as numpy
+import numpy 
 # import cv2
 # from tensorflow.keras.models import Sequential
 # from tensorflow.keras.layers import Dense, BatchNormalization, Conv2D, MaxPooling2D, Flatten, Activation, Dropout
@@ -33,17 +33,17 @@ def getFeatures(filepaths: List[str]) -> numpy.array:
     return numpy.array(images)
 
 
-def buildModel(inputShape: tuple, classes: int) -> Sequential:
+def buildModel(inumpyutShape: tuple, classes: int) -> Sequential:
     model = Sequential()
-    height, width, depth = inputShape
-    inputShape = (height, width, depth)
+    height, width, depth = inumpyutShape
+    inumpyutShape = (height, width, depth)
     chanDim = -1
 
     # CONV => RELU => POOL layer set              # first CONV layer has 32 filters of size 3x3
-    model.add(Conv2D(32, (3, 3), padding="same", name='conv_32_1', input_shape=inputShape))
+    model.add(Conv2D(32, (3, 3), padding="same", name='conv_32_1', inumpyut_shape=inumpyutShape))
     model.add(Activation("relu"))                 # ReLU (Rectified Linear Unit) activation function
-    model.add(BatchNormalization(axis=chanDim))   # normalize activations of input volume before passing to next layer
-    model.add(MaxPooling2D(pool_size=(2, 2)))     # progressively reduce spatial size (width and height) of input 
+    model.add(BatchNormalization(axis=chanDim))   # normalize activations of inumpyut volume before passing to next layer
+    model.add(MaxPooling2D(pool_size=(2, 2)))     # progressively reduce spatial size (width and height) of inumpyut 
     model.add(Dropout(0.25))                      # disconnecting random neurons between layers, reduce overfitting
 
     # (CONV => RELU) * 2 => POOL layer set          # filter dimensions remain the same (3x3)
