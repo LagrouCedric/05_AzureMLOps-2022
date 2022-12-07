@@ -58,7 +58,7 @@ def prepareComputeCluster(ws):
         
         # can poll for a minimum number of nodes and for a specific timeout. 
         # if no min node count is provided it will use the scale settings for the cluster
-        compute_target.wait_for_completion(show_output=True, min_node_count=None, timeout_in_minutes=5)
+        compute_target.wait_for_completion(show_output=True, min_node_count=None, timeout_in_minutes=2)
         
         # For a more detailed view of current AmlCompute status, use get_status()
         print(compute_target.get_status().serialize())
