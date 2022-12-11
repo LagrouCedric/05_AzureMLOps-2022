@@ -307,7 +307,21 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
-
+      - name: Gather Docker Meta Information
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          # list of Docker images to use as base name for tags
+          images: |
+            ghcr.io/lagroucedric/test 
+          # generate Docker tags based on the following events/attributes:
+          # The GitHub Branch
+          # The GitHub SHA
+          # More info: https://github.com/docker/build-push-action/blob/master/docs/advanced/tags-labels.md
+          tags: |
+            type=ref,event=branch
+            type=sha
+      
       - name: Login to GHCR
         uses: docker/login-action@v1
         with:
