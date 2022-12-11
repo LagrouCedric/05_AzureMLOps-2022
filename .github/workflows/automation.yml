@@ -10,11 +10,11 @@ jobs:
     with:
       data_prep: false
       ai_training: false
-      api_creation: True
+      api_creation: false 
       process_images: false
       split_images: false
       train_on_local: false
-      local_deployment: true
-      api_deployment: true
+      local_deployment: True
+      api_deployment: false
       remove_deployment: false
     secrets: inherit
