@@ -16,5 +16,5 @@ jobs:
       train_on_local: false
       local_deployment: True
       api_deployment: true
-      remote_deployment: false
+      remove_deployment: false
     secrets: inherit
