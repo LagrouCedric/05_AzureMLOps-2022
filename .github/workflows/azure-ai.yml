@@ -343,3 +343,32 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.TOKEN }}
+          
+      - name: namespace
+        if: ${{ !inputs.remove_deployment }}
+        run: |
+          kubectl create namespace opdracht
+      
+      - name: select namespace
+        run: |
+          kubectl config set-context --current --namespace=opdracht
+      
+      - name: Pull 
+        run: |
+          docker pull ghcr.io/lagroucedric/test:latest
+      - name: Deploy API
+        if: ${{ !inputs.remove_deployment }}
+        run: |
+          kubectl apply -f kubernetes/api-deployment.yml
+      
+      - name: Restart cluster
+        if: inputs.create_docker_image
+        run: |
+          kubectl rollout restart deployment mlops-dpl
+      - name: Expose
+        if: ${{ !inputs.create_docker_image }}
+        run: |
+          kubectl expose deployment mlops-dpl --type=LoadBalancer --port=80 --target-port=80
+      - name: service
+        run: |
+          kubectl get service mlops-dpl
