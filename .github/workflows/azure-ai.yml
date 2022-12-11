@@ -302,7 +302,7 @@ jobs:
     if: ${{
         always() &&
         (needs.docker-build-and-push.result == 'success' || needs.docker-build-and-push.result == 'skipped') &&
-        inputs.kubernetis_deployment
+        inputs.api_deployment
       }}
     runs-on: self-hosted
     steps:
@@ -335,7 +335,7 @@ jobs:
       - name: Deploy API
         if: ${{ !inputs.remove_deployment }}
         run: |
-          kubectl apply -f kubernetis/api-deployment.yml
+          kubectl apply -f kubernetes/api-deployment.yml
       
       - name: Restart the current cluster with the new image
         if: inputs.create_docker_image
