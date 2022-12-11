@@ -277,25 +277,25 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
 
-  api-deployment:
-    # Deploy to kubernetes
-    needs: [docker-build-and-push]
-     if: ${{
-        always() &&
-        (needs.docker-build-and-push.result == 'success') &&
-        inputs.local_deployment
-      }}
-    runs-on: self-hosted
+  # api-deployment:
+  #   # Deploy to kubernetes
+  #   needs: [docker-build-and-push]
+  #    if: ${{
+  #       always() &&
+  #       (needs.docker-build-and-push.result == 'success') &&
+  #       inputs.local_deployment
+  #     }}
+  #   runs-on: self-hosted
 
-    steps:
-      # Small example f kubectl is working
-      - name: kubectl version
-        run: kubectl version --client
+  #   steps:
+  #     # Small example f kubectl is working
+  #     - name: kubectl version
+  #       run: kubectl version --client
 
-      - name: Deploy to Kubernetes
-        run: |
-          kubectl apply -f kubernetes/deployment.yaml
-          kubectl apply -f kubernetes/service.yaml
+  #     - name: Deploy to Kubernetes
+  #       run: |
+  #         kubectl apply -f kubernetes/deployment.yaml
+  #         kubectl apply -f kubernetes/service.yaml
 
 
 
