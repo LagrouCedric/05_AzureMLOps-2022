@@ -55,7 +55,6 @@ def downloadLatestModel(ws):
     return model
 
 def main():
-
     # print(os.environ)
 
     # environment = prepareEnv(ws)
