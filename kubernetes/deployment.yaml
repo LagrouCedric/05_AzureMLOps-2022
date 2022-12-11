@@ -1,0 +1,28 @@
+# Kubernetes deployment YAML file to quickly deploy a simple container
+# to Kubernetes. For more information, see:
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlops
+  labels:
+    app: mlops
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mlops
+  template:
+    metadata:
+      labels:
+        app: mlops
+    spec:
+      containers:
+      - name: mlops
+        image: ghcr.io/lagroucedric/test:sha-5a2fe02
+        ports:
+        - containerPort: 80
+          name: http
+      #pull secret credentials
+      imagePullSecrets:
+        - name: regcred

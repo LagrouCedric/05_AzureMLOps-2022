@@ -84,13 +84,13 @@ on:
     
 
 env:
-  CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+  CLIENT_SECRET: ${{ secrets.CLIENT_SECRET2 }}
 
-  CLIENT_ID: 22332e80-feca-4103-9d75-fc7959f3fd58 # Change this !
+  CLIENT_ID: 58e2ae8d-58fd-474f-8206-bbbe312f1aef # Change this !
   TENANT_ID: 4ded4bb1-6bff-42b3-aed7-6a36a503bf7a # Change this !
-  WORKSPACE_NAME: lagrou-cedric-ml # Change this !
-  RESOURCE_GROUP: mlops-demo # Change this !
-  SUBSCRIPTION_ID: 4dc57ad1-5e37-4d2b-b064-84f166c27fac # Change this !
+  WORKSPACE_NAME: ml-cedric-lagrou # Change this !
+  RESOURCE_GROUP: NathanReserve # Change this !
+  SUBSCRIPTION_ID: 7c50f9c3-289b-4ae0-a075-08784b3b9042 # Change this !
 
   OPTIONS: vehicles,non-vehicles # As we have three classes, let's just defined them here. This way we can easily loop over them later.
   TRAIN_SET_NAME: options-training-set
@@ -276,6 +276,26 @@ jobs:
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
+
+  api-deployment:
+    # Deploy to kubernetes
+    needs: [docker-build-and-push]
+     if: ${{
+        always() &&
+        (needs.docker-build-and-push.result == 'success') &&
+        inputs.local_deployment
+      }}
+    runs-on: self-hosted
+
+    steps:
+      # Small example f kubectl is working
+      - name: kubectl version
+        run: kubectl version --client
+
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl apply -f kubernetes/deployment.yaml
+          kubectl apply -f kubernetes/service.yaml
 
 
 
