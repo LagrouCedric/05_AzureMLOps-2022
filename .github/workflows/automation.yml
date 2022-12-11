@@ -9,7 +9,7 @@ jobs:
     uses: ./.github/workflows/azure-ai.yml
     with:
       data_prep: false
-      ai_training: True
+      ai_training: false
       api_creation: True
       process_images: false
       split_images: false
