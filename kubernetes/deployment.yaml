@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: mlops
-        image: ghcr.io/lagroucedric/test:sha-5a2fe02
+        image: ghcr.io/lagroucedric/test:latest
         ports:
         - containerPort: 80
           name: http
