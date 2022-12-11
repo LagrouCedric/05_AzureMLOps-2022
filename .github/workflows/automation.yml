@@ -14,7 +14,7 @@ jobs:
       process_images: false
       split_images: false
       train_on_local: false
-      local_deployment: True
-      api_deployment: false
+      local_deployment: false
+      api_deployment: true
       remove_deployment: false
     secrets: inherit
