@@ -13,8 +13,8 @@ jobs:
       api_creation: True
       process_images: false
       split_images: false
-      train_on_local: true
-      local_deployment: false
+      train_on_local: false
+      local_deployment: true
       api_deployment: true
       remove_deployment: false
     secrets: inherit
