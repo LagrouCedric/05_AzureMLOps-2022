@@ -308,20 +308,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Gather Docker Meta Information
-        id: meta
         uses: docker/metadata-action@v3
-        with:
-          # list of Docker images to use as base name for tags
-          images: |
-            ghcr.io/lagroucedric/test 
-          # generate Docker tags based on the following events/attributes:
-          # The GitHub Branch
-          # The GitHub SHA
-          # More info: https://github.com/docker/build-push-action/blob/master/docs/advanced/tags-labels.md
-          tags: |
-            type=ref,event=branch
-            type=sha
-      
       - name: Login to GHCR
         uses: docker/login-action@v1
         with:
@@ -329,22 +316,16 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.TOKEN }}
 
-
-      # - name: Remove old deployment
-      #   if: inputs.remove_deployment
-      #   run: |
-      #     kubectl delete deployment mlops-dpl | kubectl delete service mlops-dpl | kubectl delete namespace eindopdracht-mlops
-
-      - name: Create namespace
+      - name: namespace
         if: ${{ !inputs.remove_deployment }}
         run: |
           kubectl create namespace opdracht
       
-      - name: Set current namespace
+      - name: select namespace
         run: |
           kubectl config set-context --current --namespace=opdracht
       
-      - name: Pull docker image
+      - name: Pull 
         run: |
           docker pull ghcr.io/lagroucedric/test:latest
       - name: Deploy API
@@ -352,14 +333,14 @@ jobs:
         run: |
           kubectl apply -f kubernetes/api-deployment.yml
       
-      - name: Restart the current cluster with the new image
+      - name: Restart cluster
         if: inputs.create_docker_image
         run: |
           kubectl rollout restart deployment mlops-dpl
-      - name: Expose the deployment
+      - name: Expose
         if: ${{ !inputs.create_docker_image }}
         run: |
           kubectl expose deployment mlops-dpl --type=LoadBalancer --port=80 --target-port=80
-      - name: Get the IP address
+      - name: service
         run: |
           kubectl get service mlops-dpl
