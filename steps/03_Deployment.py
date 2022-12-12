@@ -36,7 +36,7 @@ def prepareDeployment(ws, environment):
     inference_config = InferenceConfig(entry_script=entry_script, environment=environment)
     aci_config = AciWebservice.deploy_configuration(cpu_cores=1, memory_gb=1)
 
-    # Get our model based on the name we registered in the previous notebook
+    # Get our model based on the name we registered in the previous noteboo
     model = Model(ws, MODEL_NAME)
     print("starting service deployment")
     service = Model.deploy(workspace=ws,
