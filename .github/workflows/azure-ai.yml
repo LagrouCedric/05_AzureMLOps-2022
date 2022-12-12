@@ -42,11 +42,6 @@ on:
         type: boolean
         default: false
         required: true
-      api_deployment:
-        description: 'kube deployment of api'
-        type: boolean
-        default: false
-        required: true
       remove_deployment:
         description: 'remove prev deployment'
         type: boolean
@@ -88,11 +83,6 @@ on:
         required: true
       local_deployment:
         description: 'Check if we should deploy the API locally later on.'
-        type: boolean
-        default: false
-        required: true
-      api_deployment:
-        description: 'kube deployment of api'
         type: boolean
         default: false
         required: true
@@ -326,49 +316,3 @@ jobs:
         run: |
           kubectl get service mlops-dpl
 
-  api-deployment:
-    needs: [docker-build-and-push]
-    if: ${{
-        always() &&
-        (needs.docker-build-and-push.result == 'success' || needs.docker-build-and-push.result == 'skipped') &&
-        inputs.api_deployment
-      }}
-    runs-on: self-hosted
-    steps:
-      - uses: actions/checkout@v2
-     
-      - name: Login to GHCR
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.TOKEN }}
-          
-      - name: namespace
-        if: ${{ !inputs.remove_deployment }}
-        run: |
-          kubectl create namespace opdracht
-      
-      - name: select namespace
-        run: |
-          kubectl config set-context --current --namespace=opdracht
-      
-      - name: Pull 
-        run: |
-          docker pull ghcr.io/lagroucedric/test:latest
-      - name: Deploy API
-        if: ${{ !inputs.remove_deployment }}
-        run: |
-          kubectl apply -f kubernetes/api-deployment.yml
-      
-      - name: Restart cluster
-        if: inputs.create_docker_image
-        run: |
-          kubectl rollout restart deployment mlops-dpl
-      - name: Expose
-        if: ${{ !inputs.create_docker_image }}
-        run: |
-          kubectl expose deployment mlops-dpl --type=LoadBalancer --port=80 --target-port=80
-      - name: service
-        run: |
-          kubectl get service mlops-dpl
